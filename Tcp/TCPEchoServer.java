@@ -16,6 +16,7 @@ public class TCPEchoServer {
 
 		// クライアントの接続要求を受け付けるサーバソケットを作成
 		ServerSocket servSock = new ServerSocket(servPort);
+                System.out.println("Server is running and waiting ...);
 
 		int recvMsgSize; // 受信したメッセージのサイズ
 		byte[] byteBuffer = new byte[BUFSIZE]; // 受信バッファ
