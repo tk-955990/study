@@ -23,6 +23,7 @@ class ReadWrite {
                 }
             } catch (IOException e) {
                 // 入力/出力エラーが発生した場合のエラーハンドリング
+                // 0は「正常終了」、0以外は「異常終了」
                 System.err.println("An error occurred: " + e.getMessage());
                 System.exit(1);
             }
