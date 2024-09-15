@@ -1,3 +1,5 @@
+// 引数で渡された文字を表示
+
 class TestArgs {
     public static void main(String[] args) {
         // コマンドライン引数を処理するための変数numberを0で初期化

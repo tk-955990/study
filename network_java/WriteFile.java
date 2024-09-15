@@ -1,3 +1,5 @@
+// 実行後、入力した文字をファイルに書き込み 
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;

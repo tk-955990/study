@@ -1,3 +1,5 @@
+// 引数で渡されたファイル名の内容を表示
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;

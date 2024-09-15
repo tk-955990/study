@@ -1,3 +1,5 @@
+// 実行後、入力した文字を表示
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
