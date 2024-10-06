@@ -3,27 +3,46 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.net.InetAddress;
 import java.net.Socket;
 
 class Client {
+
   public static void main(String[] args) {
 
-    try (Socket socket = new Socket("192.168.0.8", 4444); ) {
+    try (Socket socket = new Socket("localhost", 4444); ) {
+      BufferedReader inputMessage = new BufferedReader(new InputStreamReader(System.in));
+
       BufferedWriter output = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 
-      BufferedReader inputData = new BufferedReader(new InputStreamReader(System.in));
+      InetAddress address = socket.getInetAddress();
 
-      String sendMessage = inputData.readLine();
-      output.write(sendMessage);
-      output.newLine();
-      output.flush();
+      System.out.println("Connect to : " + address.getHostName());
+      System.out.println("Connect to : " + address.getHostAddress());
 
-      System.out.println("sendMessage : " + sendMessage);
+      String sendMessage;
 
-      BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+      while (true) {
+        System.out.println("Enter message... ");
+        sendMessage = inputMessage.readLine();
 
-      String receivedMessage = input.readLine();
-      System.out.println(receivedMessage);
+        if (sendMessage.equals("exit")) {
+          break;
+        }
+
+        output.write(sendMessage);
+        output.newLine();
+        output.flush();
+
+        BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        String returnMessage = input.readLine();
+        if (returnMessage != null) {
+          System.out.println("returnMessage : " + returnMessage);
+        } else {
+          break;
+        }
+      }
+      System.out.println("Closing connection");
     } catch (IOException e) {
       e.printStackTrace();
     }
