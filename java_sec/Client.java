@@ -1,5 +1,7 @@
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -17,7 +19,6 @@ class Client {
 
       InetAddress address = socket.getInetAddress();
 
-      System.out.println("Connect to : " + address.getHostName());
       System.out.println("Connect to : " + address.getHostAddress());
 
       String sendMessage;
@@ -38,6 +39,12 @@ class Client {
         String returnMessage = input.readLine();
         if (returnMessage != null) {
           System.out.println("returnMessage : " + returnMessage);
+          File file = new File("./test.txt");
+          BufferedWriter writer = new BufferedWriter(new FileWriter(file, true));
+          writer.write(returnMessage);
+       writer.newLine();
+       writer.flush();
+          writer.close();
         } else {
           break;
         }

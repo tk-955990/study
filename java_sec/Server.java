@@ -15,7 +15,6 @@ class Server {
       System.out.println("waiting...");
       Socket socket = server.accept();
       InetAddress address = socket.getInetAddress();
-      System.out.println("Connect to : " + address.getHostName());
       System.out.println("Connect to : " + address.getHostAddress());
 
       BufferedReader receive = new BufferedReader(new InputStreamReader(socket.getInputStream()));
